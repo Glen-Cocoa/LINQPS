@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cars
 {
-  class Car
+  public class Car
   {
     public int Year { get; set; }
     public string Manufacturer { get; set; }
@@ -17,21 +17,21 @@ namespace Cars
     public int Highway { get; set; }
     public int Combined { get; set; }
 
-    internal static Car ParseFromCSV(string line)
-    {
-      var columns = line.Split(',');
+    //internal static Car ParseFromCSV(string line)
+    //{
+    //  var columns = line.Split(',');
 
-      return new Car
-      {
-        Year = int.Parse(columns[0]),
-        Manufacturer = columns[1],
-        Name = columns[2],
-        Displacement = double.Parse(columns[3]),
-        Cylinders = int.Parse(columns[4]),
-        City = int.Parse(columns[5]),
-        Highway = int.Parse(columns[6]),
-        Combined = int.Parse(columns[7])
-      };
-     }
+    //  //return new Car
+    //  //{
+    //  //  Year = int.Parse(columns[0]),
+    //  //  Manufacturer = columns[1],
+    //  //  Name = columns[2],
+    //  //  Displacement = double.Parse(columns[3]),
+    //  //  Cylinders = int.Parse(columns[4]),
+    //  //  City = int.Parse(columns[5]),
+    //  //  Highway = int.Parse(columns[6]),
+    //  //  Combined = int.Parse(columns[7])
+    //  //};
+    //}
   }
 }
