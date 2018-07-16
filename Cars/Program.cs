@@ -16,11 +16,17 @@ namespace Cars
       //IEnumerable<Car> query = cars.OrderByDescending(c => c.Combined)
       //  .ThenBy(c => c.Name);
 
-      IEnumerable<Car> query =
+      var query =
         from car in cars
         where car.Manufacturer == "BMW" && car.Year == 2016
         orderby car.Combined descending, car.Name ascending
-        select car;
+        select new
+        {
+          car.Manufacturer,
+          car.Name,
+          car.Combined
+        };
+
 
       //Car top =
       //  cars.Where(c => c.Manufacturer == "BMW" && c.Year == 2016)
@@ -29,9 +35,15 @@ namespace Cars
       //  .Select(c => c)
       //  .FirstOrDefault(c => c.Manufacturer == "BMW" && c.Year == 2016);
 
-      bool result = cars.Any(c => c.Manufacturer == "Ford");
+      IEnumerable<char> result = cars.SelectMany(c => c.Name)
+        .OrderBy(c => c);
 
-      Console.WriteLine(result);
+        foreach (var character in result)
+        {
+          Console.WriteLine(character);
+        }
+
+      //Console.WriteLine(result);
 
       //foreach (Car car in query.Take(10))
       //{
