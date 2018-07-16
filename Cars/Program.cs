@@ -12,9 +12,11 @@ namespace Cars
     static void Main(string[] args)
     {
       List<Car> cars = ProcessFile("fuel.csv");
-      foreach (var car in cars)
+
+      IEnumerable<Car> query = cars.OrderByDescending(car => car.Combined);
+      foreach (Car car in query.Take(10))
       {
-        Console.WriteLine(car.Name);
+        Console.WriteLine($"{car.Name} : {car.Combined}");
       }
     }
 
