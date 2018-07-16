@@ -13,7 +13,24 @@ namespace Cars
     {
       List<Car> cars = ProcessFile("fuel.csv");
 
-      IEnumerable<Car> query = cars.OrderByDescending(car => car.Combined);
+      //IEnumerable<Car> query = cars.OrderByDescending(c => c.Combined)
+      //  .ThenBy(c => c.Name);
+
+      IEnumerable<Car> query =
+        from car in cars
+        where car.Manufacturer == "BMW" && car.Year == 2016
+        orderby car.Combined descending, car.Name ascending
+        select car;
+
+      Car top =
+        cars.Where(c => c.Manufacturer == "BMW" && c.Year == 2016)
+        .OrderByDescending(c => c.Combined)
+        .ThenBy(c => c.Name)
+        .Select(c => c)
+        .First(c => c.Manufacturer == "BMW" && c.Year == 2016);
+
+      Console.WriteLine(top.Name);
+
       foreach (Car car in query.Take(10))
       {
         Console.WriteLine($"{car.Name} : {car.Combined}");
